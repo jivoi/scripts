@@ -1,0 +1,20 @@
+Create FreeBSD jails
+
+1.Make jail FS
+2.Generate jail config and add it to rc.conf
+3.Generate fstab and add it to /www/jail-struct
+
+For help run:
+
+>make help
+Usage: init create conf install
+
+init - jail struct init
+create - create new jail
+conf - generate new jail config rc && fstab 
+install - install new jail config
+
+
+To start new jail run:
+
+>/etc/rc.d/jail start

@@ -1,0 +1,14 @@
+/bin					/www/jail/%HOSTNAME%/bin	nullfs	ro	0	0
+/lib					/www/jail/%HOSTNAME%/lib	nullfs	ro	0	0
+/libexec				/www/jail/%HOSTNAME%/libexec	nullfs	ro	0	0
+/sbin					/www/jail/%HOSTNAME%/sbin	nullfs	ro	0	0
+/usr					/www/jail/%HOSTNAME%/usr	nullfs	ro	0	0
+/www/jail-struct/%HOSTNAME%/root	/www/jail/%HOSTNAME%/root	nullfs	rw	0	0
+/www/jail-struct/%HOSTNAME%/usr/local	/www/jail/%HOSTNAME%/usr/local	nullfs	rw	0	0
+/www/jail-struct/%HOSTNAME%/usr/build	/www/jail/%HOSTNAME%/usr/build	nullfs	rw	0	0
+/www/jail-struct/%HOSTNAME%/etc		/www/jail/%HOSTNAME%/etc	nullfs	rw	0	0
+/www/jail-struct/%HOSTNAME%/usr/home	/www/jail/%HOSTNAME%/usr/home	nullfs	rw	0	0
+/www/jail-struct/%HOSTNAME%/tmp		/www/jail/%HOSTNAME%/tmp	nullfs	rw	0	0
+/www/jail-struct/%HOSTNAME%/var		/www/jail/%HOSTNAME%/var	nullfs	rw	0	0
+/www/jail-struct/%HOSTNAME%/www		/www/jail/%HOSTNAME%/www	nullfs	rw	0	0
+/usr/ports				/www/jail/%HOSTNAME%/usr/ports	nullfs	ro	0	0

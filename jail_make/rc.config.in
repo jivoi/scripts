@@ -1,0 +1,12 @@
+jail_%NAME%_rootdir="/www/jail/%HOSTNAME%"
+jail_%NAME%_hostname="%HOSTNAME%"
+jail_%NAME%_ip="%IP%"
+jail_%NAME%_exec_start="/bin/sh /etc/rc"
+jail_%NAME%_exec_stop="/bin/sh /etc/rc.shutdown"
+jail_%NAME%_devfs_enable="YES"
+jail_%NAME%_fdescfs_enable="YES"
+jail_%NAME%_procfs_enable="YES"
+jail_%NAME%_mount_enable="YES"
+jail_%NAME%_fstab="/www/jail-struct/%HOSTNAME%.fstab"
+jail_%NAME%_devfs_ruleset="devfsrules_jail"
+
