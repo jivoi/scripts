@@ -1,4 +1,8 @@
 #!/usr/bin/perl
+
+#add to cron
+#/root/bin/checkdomain/checkdomain.pl < /root/bin/checkdomain/domains.txt 2>&1
+
 # added cache whois 
 use Net::Domain::ExpireDate;
 use Time::Piece;
@@ -7,7 +11,7 @@ use Net::Whois::Raw qw( whois );
 my $mailto = 'root@examle.com';
 my $debug = 1;
 my $now = localtime;
-my $mail = 'mail -s "Domain Expiration Status" '.$mailto;
+my $mail = 'mail -Es "Domain Expiration Status" '.$mailto;
 #my $mail = 'cat';
 my $warntime = 3*30*24*60*60; # 3 months
 #my $warntime = 3*30*24*60;
