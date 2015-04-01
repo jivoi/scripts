@@ -1,0 +1,50 @@
+#!/bin/sh
+
+if uname | grep -qi linux; then
+    # Linux
+    yesterday () {
+        date -d "12 hours ago" +%Y%m%d
+    }
+elif uname | grep -qi freebsd; then
+    # FreeBSD
+    if uname -r | grep -q ^4; then
+        # 4* FreeBSD
+        yesterday () {
+            date -j -v -12H +%Y%m%d
+        }
+    else
+        # other, use old 'date'
+        yesterday () {
+            sec=`date +%s`
+            date -r `expr $sec - 43200` +%Y%m%d
+        }
+    fi
+else
+    # Other
+    echo "Don't know this operating system: `uname`" 2>&1
+    exit 1
+fi
+
+for slowlog in `ls /logs/mysql/mysql*slow.log`; do
+NumberMysql=`echo $slowlog | grep -o '[0-9]'`
+if [ -z $NumberMysql ]; then
+        PORT=3306
+else
+        PORT=`expr 3305 + $NumberMysql`
+fi
+
+(
+echo '
+===========================================
+=== Slow queries sorted by average time ===
+===========================================
+'
+/root/bin/mysqldumpslow -s at $slowlog 2>/dev/null
+echo '
+=========================================
+=== Slow queries sorted by total time ===
+=========================================
+'
+/root/bin/mysqldumpslow -s t $slowlog 2>/dev/null
+) | mail -s "slow log stats on host `hostname` port $PORT at `yesterday`" slowlog@example.ru
+done
