@@ -1,0 +1,46 @@
+#platform=x86, AMD64, or Intel EM64T
+#version=DEVEL
+# Firewall configuration
+firewall --disabled
+# Install OS instead of upgrade
+install
+# Use network installation
+url --url="http://ks.example.ru/"
+# Root password
+rootpw --iscrypted $1$5Ytbf19/$XxFXz1XIbPjHqgxTazGk1123
+# Network information
+network  --bootproto=static --device=eth0 --gateway=192.168.56.1 --ip=192.168.56.101 --nameserver=8.8.8.8 --netmask=255.255.255.0 --onboot=on
+# System authorization information
+auth  --useshadow  --passalgo=sha512
+# Use text mode install
+text
+firstboot --disable
+# System keyboard
+keyboard us
+# System language
+lang en_US
+# SELinux configuration
+selinux --disabled
+# Installation logging level
+logging --level=info
+# Reboot after installation
+reboot
+# System timezone
+timezone  Europe/Moscow
+# System bootloader configuration
+bootloader --location=mbr
+# Partition clearing information
+clearpart --all --initlabel 
+# Disk partitioning information
+part / --fstype="ext4" --size=1024
+part swap --fstype="swap" --size=2048
+part /usr --fstype="ext4" --size=5120
+part /var --fstype="ext4" --size=3072
+part /tmp --fstype="ext4" --size=3072
+part /logs --fstype="ext4" --size=12288
+part /www --fstype="ext4" --grow --size=1
+
+%packages
+@base
+
+%end
